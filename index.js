@@ -6,7 +6,18 @@ import { MongoClient } from "mongodb";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// IMPORTANT: Configure CORS to allow your GitHub Pages domain
+app.use(cors({
+    origin: [
+        'https://arnoldni1.github.io',  // Replace with YOUR GitHub username
+        'http://localhost:5173',        // For local development
+        'http://localhost:3000'         // Alternative local port
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
+
 app.use(express.json());
 
 // USE .env VARIABLES
